@@ -4,7 +4,10 @@ const { route } = require('./router.js'); //  路由处理
 const app = express();
 const port = 3030;
 app.use(session({
-  name:'express',
+  cookie:{
+    path:'/',
+    maxAge: 1 * 1000
+  },
   resave: true,
   saveUninitialized: false,
   secret: 'ocean'
