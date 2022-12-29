@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const secretKey = 'ocean';
 const { register, findUser } = require('../dbHandler/dbRegisterAndLogin.js');
 const handleRegister = async (req, res) => {
@@ -69,7 +68,6 @@ const handleLogin = async (req, res) => {
           code: 0,
           msg: '登录成功',
           user: user.userName,
-          token: jwt.sign({username: user.userName}, secretKey, { expiresIn: `${60 * 60 * 2}s`})
         }));        
       }
     }
