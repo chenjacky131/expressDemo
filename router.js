@@ -12,12 +12,6 @@ const handleCrossOrigin = (app) => {  //  处理跨域
     res.set({
       'Content-Type': 'application/json;charset=utf-8'
     });
-    if(!req.session.user && req.url !== '/login'){
-      res.end(JSON.stringify({
-        code: -1,
-        msg: '未登录'
-      }))
-    }
     if(req.method === 'OPTIONS'){
       res.sendStatus(200);  //  让options尝试快速结束
     }else{
@@ -25,19 +19,31 @@ const handleCrossOrigin = (app) => {  //  处理跨域
     }
   });
 }
+const checkLogin = (req, res) => {
+  if(!req.session.user){
+    res.end(JSON.stringify({
+      code: -1,
+      msg: '未登录'
+    }))
+  }
+}
 
 function route(app){
   handleCrossOrigin(app);
   app.get('/findData', (req,res) => {
+    checkLogin(req, res);
     handleFindDataRoute(req, res); 
   });
   app.post('/setData', (req, res) => {
+    checkLogin(req, res);
     handleSetDataRoute(req,res)
   });
   app.post('/deleteData', (req, res) => {
+    checkLogin(req, res);
     handleDeleteDataRoute(req,res)
   });
   app.post('/updateData', (req, res) => {
+    checkLogin(req, res);
     handleUpdateDataRoute(req,res)
   });
   app.post('/register', (req, res) => {
