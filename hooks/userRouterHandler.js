@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { express: jwt } = require('express-jwt');
 const secretKey = 'ocean';
 const { register, findUser } = require('../dbHandler/dbRegisterAndLogin.js');
 const handleRegister = async (req, res) => {
