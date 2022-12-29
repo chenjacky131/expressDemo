@@ -1,4 +1,7 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const { express: jwt } = require('express-jwt');
+const secretKey = 'ocean';
 const { register, findUser } = require('../dbHandler/dbRegisterAndLogin.js');
 const handleRegister = async (req, res) => {
   const { name, password, confirmPassword } = req.body;
@@ -66,7 +69,8 @@ const handleLogin = async (req, res) => {
         res.end(JSON.stringify({
           code: 0,
           msg: '登录成功',
-          user: user.userName
+          user: user.userName,
+          token: jwt.sign({username: user.userName}, secretKey, { expiresIn: `${60 * 60 * 2}s`})
         }));        
       }
     }
