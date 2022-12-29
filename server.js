@@ -6,7 +6,7 @@ const port = 3030;
 app.use(session({
   cookie:{
     path:'/',
-    maxAge: 1 * 1000
+    maxAge: 1 * 5000
   },
   resave: true,
   saveUninitialized: false,
