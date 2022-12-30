@@ -6,7 +6,8 @@ const port = 3030;
 app.use(session({
   cookie:{
     path:'/',
-    maxAge: 1000 * 60 * 60 * 2  //  过期时间2个小时
+    // maxAge: 1000 * 60 * 60 * 2  //  过期时间2个小时,
+    maxAge: 1000 * 5  //  过期时间2个小时
   },
   resave: true, //  每次请求时自动刷新过期时间，过期时间重新往后算2个小时
   saveUninitialized: false,

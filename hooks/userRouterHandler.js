@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const secretKey = 'ocean';
 const { register, findUser } = require('../dbHandler/dbRegisterAndLogin.js');
 const handleRegister = async (req, res) => {
   const { name, password, confirmPassword } = req.body;
