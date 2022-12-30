@@ -12,7 +12,7 @@ const handleSetDataRoute = async (req, res) => {
   const {name, age, number} = req.body;
   const exist = await findData(name);
   if(exist){
-    res.end(JSON.parse({msg:'数据已存在'}))
+    res.end(JSON.stringify({msg:'数据已存在'}))
   }else{
     const data = await insertData({name, age, number});
     res.end(JSON.stringify(data))        
