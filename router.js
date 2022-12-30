@@ -25,6 +25,7 @@ const checkLogin = (req, res) => {
       code: -1,
       msg: '未登录'
     }))
+    return;
   }
 }
 
