@@ -1,7 +1,12 @@
-const { insertData, findData, deleteData, updateData } = require('../dbHandler/dbList.js');
+const { insertData, findData, findSingleData, deleteData, updateData } = require('../dbHandler/dbList.js');
 const handleFindDataRoute = async (_req,res) => {
   const data = await findData();
   res.end(JSON.stringify(data ? data: {msg: '暂无数据'}))
+}
+const handleFindSingleDataRoute = async (req,res) => {
+  const {id} = req.params;
+  const result = await findSingleData(id);
+  res.end(JSON.stringify(result))
 }
 const handleSetDataRoute = async (req, res) => {
   const {name, age, number} = req.body;
@@ -32,5 +37,6 @@ module.exports = {
   handleFindDataRoute,
   handleSetDataRoute,
   handleDeleteDataRoute,
-  handleUpdateDataRoute
+  handleUpdateDataRoute,
+  handleFindSingleDataRoute
 }

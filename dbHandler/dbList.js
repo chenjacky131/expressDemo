@@ -23,6 +23,11 @@ async function findData (name = undefined){ //  查询数据
   }
   return res;
 }
+async function findSingleData (id){ //  查询单条数据
+  const collection = await getCollection();
+  const res = await collection.findOne({_id: ObjectId(id)});
+  return res;
+}
 async function deleteData (id){ //  删除数据
   const collection = await getCollection();
   const res = await collection.deleteOne({_id: ObjectId(id)})
@@ -47,5 +52,6 @@ module.exports = {
   insertData,
   findData,
   deleteData,
-  updateData
+  updateData,
+  findSingleData
 }

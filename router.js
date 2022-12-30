@@ -1,4 +1,4 @@
-const { handleFindDataRoute, handleSetDataRoute, handleDeleteDataRoute, handleUpdateDataRoute} = require('./hooks/listRouterHandler.js');
+const { handleFindDataRoute, handleSetDataRoute,handleFindSingleDataRoute, handleDeleteDataRoute, handleUpdateDataRoute} = require('./hooks/listRouterHandler.js');
 const { handleRegister, handleLogin, handleLogout } = require('./hooks/userRouterHandler.js');
 const handleCrossOrigin = (app) => {  //  处理跨域
   app.all('*', (req, res, next) => {
@@ -33,6 +33,10 @@ function route(app){
   app.get('/findData', (req,res) => {
     checkLogin(req, res);
     handleFindDataRoute(req, res); 
+  });
+  app.get('/findData/:id', (req,res) => {
+    checkLogin(req, res);
+    handleFindSingleDataRoute(req, res); 
   });
   app.post('/setData', (req, res) => {
     checkLogin(req, res);
